@@ -1,0 +1,51 @@
+Task-01:
+1. Create a file excalibur.txt in Desktop:
+//Navigate to desktop
+cd Desktop
+// creating file
+cat > excalibur.txt
+
+2. Change the permission of the file to owner: read, write and
+execute, group: read and execute and for other users execute only.
+⇒ chmod 751 excalibur.txt
+
+3. Create a directory named mydirectory
+⇒ mkdir mydirectory
+4. Copy the file excalibur.txt to mydirectory
+⇒ cp excalibur.txt mydirectory
+5. Delete the file excalibur.txt from desktop.
+⇒ rm excalibur.txt
+________________
+
+Task-02:
+Delete all the files and folders from a directory
+⇒ rm -r *
+________________
+
+Task-03:
+Find all the .txt files in a folder
+⇒ ls *.txt
+________________
+
+Task-04:
+Check for a given string in multiple files (N.B. Choose a random
+string of your choice)
+⇒ //Created 3 more text files with the strings “The 2nd dummy text
+file”, “The 3rd dummy text file”, “The 4rd dummy text file”
+grep file *.txt
+________________
+
+
+Task-05:
+Show only lines 12-18 of a .txt file
+⇒ // created a.txt file which contains 18 lines
+nano a.txt
+// display the last 7 lines
+tail -7 a.txt
+
+________________
+
+
+Task-06:
+Show all the files in a directory
+⇒ ls -l
