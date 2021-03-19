@@ -1,0 +1,118 @@
+Task-01:
+#!/bin/bash
+echo "Enter your income: "
+read income
+t1=240000
+t2=300000
+t3=180000
+taxcount=0
+tmax=$(($t1+$t2+$t3))
+tmid=$(($t1+$t2))
+taxmax=66000
+taxmid=30000
+if [ $income -lt $t1 ];
+ then echo "Tax Free"
+fi
+if [ $income -gt $tmax ];
+ then maxRestCount=$(($income-$tmax))
+ taxcount=$(($maxRestCount*3/10+$taxmax))
+ echo "$taxcount"
+elif [ $income -gt $tmid ];
+ then midRestCount=$(($income-$tmid))
+ taxcount=$(($midRestCount*2/10+$taxmid))
+ echo "$taxcount"
+elif [ $income -gt $t1 ];
+ then RestCount=$(($income-$t1))
+ taxcount=$(($RestCount*1/10))
+ echo "$taxcount"
+fi
+
+Task-02:
+#!/bin/bash
+echo "Enter a number:"
+read number
+updatable=0
+dividibleBy2=$((number%2))
+dividibleBy5=$((number%5))
+if [ $dividibleBy2 -eq 0 ] 
+ then updatable=$(($div + 1))
+fi
+if [ $dividibleBy5 -eq 0 ] 
+ then updatable=$(($div + 1))Task-03:
+#!/bin/bash
+echo "Enter a number:"
+read number
+div=0
+for((i=2; i<number; i++))
+do
+check=$((number%i))
+if [ $check -eq 0 ] 
+ then div=$(($div + 1))
+fi
+done
+if [ $div -eq 0 ] 
+ then echo "prime"
+else
+ echo "not prime"
+fi
+Task-04:
+#!/bin/bash
+plus="+"
+subtraction="-"
+mult="*"
+div="/"
+i=0
+echo "Which operation would you like to do?"
+read operation
+echo "Operand 1:"
+read Operand1
+echo "Operand 2:"
+read Operand2
+output=0
+if [ $operation = $plus ]
+ then output=$(($Operand1 + $Operand2))
+elif [ $operation = $subtraction ]
+ then output=$(($Operand1 - $Operand2))
+elif [ $operation = $div ] 
+ then output=$(($Operand1/$Operand2))
+elif [ $operation = $mult ]
+ then output=$(($Operand1*$Operand2))
+fi
+echo "The result is $output"
+Task-05:#!/bin/bash
+echo "Enter a number"
+read number
+Happynumber=1
+my_list=($a $b $c $d)
+num=$number
+sum=0
+#to count the number of digites
+NumberOfDigits=${#number}
+for ((i=0; i<$NumberOfDigits; i++ ))
+do
+ power=$((${number:$i:1}**2))
+ sum=$(($sum+$power))
+done
+#iterating and doing sum
+number=$sum
+NumberOfDigits=${#sum}
+sum=0
+for ((i=0; i<$NumberOfDigits;i++ ))
+do
+ power=$((${number:$i:1}**2))
+ sum=$(( $sum+$power ))
+done
+if [ $sum -eq 1 ]; then
+ echo "Happy Number"
+else
+ echo "NOT Happy Number"
+fi
+fi
+if [ $updatable -eq 0 ] 
+ then echo "IGNORE"elif [ $updatable -eq 1 ]
+ then echo "YES"
+else
+ echo "NO"
+fi
+
+
