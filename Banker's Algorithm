@@ -1,1 +1,123 @@
-Dummy text!
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lastlabofcse321;
+import java.util.*;
+import java.io.*;
+
+/**
+ *
+ * @author User
+ */
+public class BankersAlgorithm {
+    public static void main(String[] args) throws Exception{
+    BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\BankersAlgo.txt"));
+    
+    int row=Integer.parseInt(br.readLine());
+    int column=Integer.parseInt(br.readLine());
+    
+    String[] p = new String[row];
+    int[][] max = new int[row][column];
+    int[][] allocate = new int[row][column];
+    int[][] need = new int[row][column];
+    int[][] available = new int[row+1][column];
+    LinkedList<Integer> track = new LinkedList<Integer>();
+    
+    String s=br.readLine();
+    StringTokenizer Str = new StringTokenizer(s, " ");
+    int n=0;
+    
+    while(Str.hasMoreTokens()){
+      p[n]=Str.nextToken();
+      n++;
+    }
+    
+    for(int i=0; i<row; i++){
+      String str=br.readLine();
+      StringTokenizer st = new StringTokenizer(str, " ");
+      
+      for(int j=0; j<column; j++){
+        max[i][j]=Integer.parseInt(st.nextToken());
+      }
+    }
+    
+    for(int i=0; i<row; i++){
+      String st=br.readLine();
+      StringTokenizer str = new StringTokenizer(st, " ");
+      
+      for(int j=0; j<column; j++){
+        allocate[i][j]=Integer.parseInt(str.nextToken());
+        need[i][j]=max[i][j]-allocate[i][j];
+      }
+    }
+    
+    System.out.print("Need Matrix:");
+    for(int i=0; i<row; i++){
+      System.out.println();
+      
+      for(int j=0; j<column; j++){
+        System.out.print(need[i][j]+" ");
+      }
+    }
+    
+    System.out.println();
+    String S=br.readLine();
+    StringTokenizer st = new StringTokenizer(S, " ");
+    
+    int counter=0;
+    while(st.hasMoreTokens()){
+      available[0][counter]=Integer.parseInt(st.nextToken());
+      counter++;
+    }
+    
+    counter=0;
+    for(int i=0;;i++){
+      i=i%row;
+      boolean flag=true;
+      
+      for(int j=0; j<column; j++){
+        if(need[i][j]<=available[counter][j]){
+          
+        }
+        
+        else{
+          flag=false;
+          break;
+        }
+        
+        if(flag && j==(column-1) && !track.contains(i)){
+          for(int k=0; k<column; k++){
+            available[counter+1][k]=available[counter][k]+allocate[i][k];
+          }
+          
+          track.addLast(i);
+          counter++;
+        }
+      }
+      
+      if(track.size()==row){
+        break;
+      }
+    }
+    
+    System.out.println("Safe sequence:");
+    for(int i=0; i<track.size(); i++){
+      System.out.print(p[track.get(i)]+" ");
+    }
+    
+    System.out.println();
+    
+    System.out.print("Change in available resource matrix: ");
+    for(int i=1; i<available.length; i++){
+      System.out.println();
+      
+      for(int j=0; j<column; j++){
+        System.out.print(available[i][j]+" ");
+      }
+    }
+    
+    System.out.println();
+  }
+}
